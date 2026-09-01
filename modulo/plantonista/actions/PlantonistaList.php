@@ -14,6 +14,7 @@ use CControllerResponseData;
  *
  * Saida (para a view):
  *   - plantonista : nome do plantonista ativo, ou null se nao encontrado
+ *   - celular     : telefone do plantonista ativo, ou null
  */
 class PlantonistaList extends CController {
 
@@ -44,10 +45,11 @@ class PlantonistaList extends CController {
 
 		$pesquisou   = ($aplicacao !== '');
 		$plantonista = null;
+		$celular     = null;
 
 		if ($pesquisou) {
 			$row = DBfetch(DBselect(
-				'SELECT nome'.
+				'SELECT nome,celular'.
 				' FROM plantonista_escala'.
 				' WHERE LOWER(aplicacao)='.zbx_dbstr(mb_strtolower($aplicacao)).
 					' AND data_inicio<='.zbx_dbstr($data).
@@ -56,14 +58,18 @@ class PlantonistaList extends CController {
 				1
 			));
 
-			$plantonista = ($row !== false) ? $row['nome'] : null;
+			if ($row !== false) {
+				$plantonista = $row['nome'];
+				$celular     = $row['celular'];
+			}
 		}
 
 		$response = new CControllerResponseData([
 			'aplicacao'   => $aplicacao,
 			'data'        => $data,
 			'pesquisou'   => $pesquisou,
-			'plantonista' => $plantonista
+			'plantonista' => $plantonista,
+			'celular'     => $celular
 		]);
 		$response->setTitle(_('Consulta de plantonista'));
 

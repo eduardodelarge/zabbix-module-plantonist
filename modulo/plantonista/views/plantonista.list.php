@@ -10,6 +10,7 @@
  * $data['data']        string  (Y-m-d)
  * $data['pesquisou']   bool
  * $data['plantonista'] string|null
+ * $data['celular']     string|null
  */
 
 $form = (new CForm('get'))
@@ -46,7 +47,12 @@ if ($data['pesquisou']) {
 	if ($data['plantonista'] !== null) {
 		$resultado = (new CDiv([
 			(new CTag('p', true, _('Plantonista responsavel:')))->addStyle('margin:0 0 4px 0; color:#768d99;'),
-			(new CTag('h1', true, $data['plantonista']))->addStyle('margin:0;')
+			(new CTag('h1', true, $data['plantonista']))->addStyle('margin:0 0 10px 0;'),
+			(new CTag('p', true, _('Telefone:')))->addStyle('margin:0 0 4px 0; color:#768d99;'),
+			(new CTag('h2', true, ($data['celular'] !== null && $data['celular'] !== '')
+				? $data['celular']
+				: _('(nao informado)')
+			))->addStyle('margin:0;')
 		]))->addStyle('margin-top:20px;');
 	}
 	else {
