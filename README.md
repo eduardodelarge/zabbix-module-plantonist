@@ -3,7 +3,7 @@
 Consulta, dentro da interface do Zabbix, **quem é o plantonista responsável por uma aplicação em uma data**.
 A resposta é apenas o **nome** do plantonista ativo naquela data.
 
-Testado com **Zabbix 7.4** (API de módulos de frontend do ramo 7.0+).
+Testado com **Zabbix 7.4**.
 
 ---
 
