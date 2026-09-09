@@ -222,7 +222,3 @@ Menu **Monitoring ▸ Plantonista**.
 | Datas trocadas (mês/dia) | O script assume `dd/mm/aaaa`. Se a planilha usa `mm/dd/aaaa`, ajuste `dayfirst=False` em `importar_escala.py`. |
 
 ---
-
-## Ideia opcional (não incluída)
-
-Com os dados já na tabela, dá para criar um **media type** no Zabbix que, ao disparar um alerta de uma aplicação, descubra automaticamente o plantonista e envie SMS/WhatsApp. Como webhooks do Zabbix só fazem HTTP (não acessam o banco direto), isso exigiria expor um pequeno endpoint REST na frente da tabela. Posso montar isso depois, se você quiser.
